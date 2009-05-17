@@ -1,0 +1,20 @@
+---
+:verbose: true
+:repo:
+    :path: '.'
+:update:
+    :interval: 5.0
+    :stable: 2
+:twitter:
+    :active: true
+    :id: 
+    :password: 
+    :count: 5
+#yahoo weather
+#http://weather.yahoo.com/Spain/SPXX/regional.html
+#see the web results for add this!
+#example of Barcelona
+:weather:
+    :city: Barcelona
+    :location: SPXX0015 #Barcelona!
+    :units: c  #f or c

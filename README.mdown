@@ -1,0 +1,4 @@
+#memento
+
+>I was prompted to do this after discussions with several digital archivists who complained that, prior to the computerized era, writers produced a series complete drafts on the way to publications, complete with erasures, annotations, and so on. These are archival gold, since they illuminate the creative process in a way that often reveals the hidden stories behind the books we care about. By contrast, many writers produce only a single (or a few) digital files that are modified right up to publication time, without any real systematic records of the interim states between the first bit of composition and the final draft.
+>>Cory Doctorow ([Flashbake: Free version-control for writers using git](http://craphound.com/?p=2171), 2009)
