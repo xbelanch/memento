@@ -32,10 +32,9 @@ class Memento
     	puts "Not a git repository here!\n"
     	exit 1
     end
-    dw = DirectoryWatcher.new @config[:repo][:path], :pre_load => true
-    dw.glob = '*.mdown'
-    dw.interval = @config[:update][:interval]
-    dw.stable = @config[:update][:stable]
+    dw = DirectoryWatcher.new @config[:repo][:path], :glob => @config[:watcher][:path], :pre_load => true
+    dw.interval = @config[:watcher][:interval]
+    dw.stable = @config[:watcher][:stable]
     dw.add_observer {|*args| args.each {|event| 
     	if event.type==:modified
     		puts "#{event.path} has modified!" if @config[:verbose] 
@@ -57,7 +56,7 @@ class Memento
 	
 	def commit
 	  puts `git pull origin master`
-	  @message = Time.now.strftime("Commited on %d/%m/%Y at %I:%M%p")
+	  @message = Time.now.strftime("Commited on %d/%m/%Y at %I:%M%p\n")
 	  weather
 	  twitter
 	  #@repo.commit_all(@message)
