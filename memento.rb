@@ -6,6 +6,7 @@ require 'yaml'
 require 'directory_watcher'
 require 'twitter'
 require 'yahoo-weather'
+require 'friendfeed'
 include Grit
 
 
@@ -59,6 +60,7 @@ class Memento
 	  @message = Time.now.strftime("Commited on %d/%m/%Y at %I:%M%p\n")
 	  weather
 	  twitter
+	  friendfeed
 	  #@repo.commit_all(@message)
 	  #reemplazar esto!!! investigar pq no funciona con grit <-> github
 	  File.open(".message.tmp", "w") {|file| file.puts @message}
@@ -95,6 +97,25 @@ class Memento
     @message += "\tHumedad: #{response.atmosphere.humidity}%\n"
 	end
 	
+	def friendfeed
+	  begin
+	  client = FriendFeed::Client.new.api_login(@config[:friendfeed][:user], @config[:friendfeed][:remote_key])
+	  rescue SystemCallError => e
+	    puts "FrienFeed account error!\n"
+	    exit 1
+    end
+    @message += "LifeStreaming:\n"
+	  @message += "==============\n"
+	  last_feeds = client.get_home_entries
+	  last_feeds.each do |feed|
+	    title = feed["title"]
+	    service = feed["service"]["name"]
+	    time = Time.parse(feed["published"]).strftime("%d/%m/%Y at %I:%M%p")
+	    link = feed["link"]
+	    @message += "\t\t- #{title} from #{service}, published on #{time}. Original feed at: #{link}\n"
+    end
+  end
+
 end
 
 

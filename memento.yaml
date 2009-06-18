@@ -2,14 +2,18 @@
 :verbose: true
 :repo:
     :path: '.'
-:update:
-    :interval: 5.0
-    :stable: 2
+:watcher:
+    :path: '**/*.*'
+    :interval: 60.0
+    :stable: 20
 :twitter:
     :active: true
-    :id: 
-    :password: 
+    :id: <user>
+    :password: <password>
     :count: 5
+:friendfeed:
+    :user: <user>
+    :remote_key: <remote_key>
 #yahoo weather
 #http://weather.yahoo.com/Spain/SPXX/regional.html
 #see the web results for add this!
